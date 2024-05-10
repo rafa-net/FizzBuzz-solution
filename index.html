@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    <title>FizzBuzz</title>
+</head>
+<body>
+
+    <script>
+        let roller = 1;
+        let userInput = prompt("Show me:");
+        let userInputInt = parseInt(userInput);
+    
+        if (userInputInt < 0) {
+            alert("Please enter a positive number");
+        }
+    
+        async function displayNumbers() {
+            while (roller <= userInputInt) {
+                let displayText;
+                if (roller % 3 === 0 && roller % 5 === 0) {
+                    displayText = "FizzBuzz";
+                } else if (roller % 3 === 0) {
+                    displayText = "Fizz";
+                } else if (roller % 5 === 0) {
+                    displayText = "Buzz";
+                } else {
+                    displayText = roller;
+                }
+                let paragraph = document.createElement("p");
+                paragraph.textContent = displayText;
+                paragraph.className = "fade-in";
+                document.body.appendChild(paragraph);
+                roller++;
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+        }
+    
+        displayNumbers();
+    </script>
+</body>
+</html>
